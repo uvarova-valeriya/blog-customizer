@@ -19,7 +19,7 @@ import { RadioGroup } from 'src/ui/radio-group';
 import { Separator } from 'src/ui/separator';
 
 type ArticleParamsFormProps = {
-	onApply: (parms: ArticleStateType) => void;
+	onApply: (params: ArticleStateType) => void;
 };
 
 export const ArticleParamsForm = (props: ArticleParamsFormProps) => {
@@ -31,9 +31,7 @@ export const ArticleParamsForm = (props: ArticleParamsFormProps) => {
 		field: K,
 		value: ArticleStateType[K]
 	) => {
-		const newState = { ...formState };
-		newState[field] = value;
-		setFormState(newState);
+		setFormState((prev) => ({ ...prev, [field]: value }));
 	};
 
 	const handleSubmit = (e: FormEvent) => {
@@ -65,7 +63,10 @@ export const ArticleParamsForm = (props: ArticleParamsFormProps) => {
 			<aside
 				ref={containerRef}
 				className={clsx(styles.container, { [styles.container_open]: isOpen })}>
-				<form className={styles.form} onSubmit={handleSubmit}>
+				<form
+					className={styles.form}
+					onSubmit={handleSubmit}
+					onReset={handleReset}>
 					<Text as='h2' size={31} weight={800} uppercase dynamicLite>
 						Задайте параметры
 					</Text>
@@ -106,7 +107,7 @@ export const ArticleParamsForm = (props: ArticleParamsFormProps) => {
 							title='Сбросить'
 							htmlType='reset'
 							type='clear'
-							onClick={handleReset}
+							// onClick={handleReset}
 						/>
 						<Button title='Применить' htmlType='submit' type='apply' />
 					</div>

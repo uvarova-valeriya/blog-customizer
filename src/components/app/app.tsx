@@ -1,5 +1,4 @@
 import { CSSProperties, useState } from 'react';
-import clsx from 'clsx';
 
 import { Article } from '../article/Article';
 import { ArticleParamsForm } from '../article-params-form/ArticleParamsForm';
@@ -12,13 +11,13 @@ import styles from './app.module.scss';
 
 export const App = () => {
 	const [articleParams, setArticleParams] = useState(defaultArticleState);
-	const applyParms = (newParms: ArticleStateType) => {
-		setArticleParams(newParms);
+	const applyParams = (newParams: ArticleStateType) => {
+		setArticleParams(newParams);
 	};
 
 	return (
 		<main
-			className={clsx(styles.main)}
+			className={styles.main}
 			style={
 				{
 					'--font-family': articleParams.fontFamilyOption.value,
@@ -28,7 +27,7 @@ export const App = () => {
 					'--bg-color': articleParams.backgroundColor.value,
 				} as CSSProperties
 			}>
-			<ArticleParamsForm onApply={applyParms} />
+			<ArticleParamsForm onApply={applyParams} />
 			<Article />
 		</main>
 	);
