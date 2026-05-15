@@ -1,4 +1,4 @@
-import { Decorator } from '@storybook/react';
+import { Decorator } from '@storybook/react-vite';
 import styles from './StoryDecorator.module.scss';
 
 export const StoryDecorator: Decorator = (Story) => (
